@@ -15,11 +15,4 @@ Welcome to the |classbold| labs at AppWorld |year|
    class3/class*
    class4/class*
    class5/class*
-   class6/class*
-   class7/class*
    class8/class*
-   class9/class*
-   class10/class*
-   class11/class*
-   class12/class*
-   class13/class*
