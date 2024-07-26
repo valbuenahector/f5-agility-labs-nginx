@@ -1,0 +1,2 @@
+sphinx==7.4.7
+f5-sphinx-theme==2.6.1
