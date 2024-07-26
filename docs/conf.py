@@ -6,7 +6,7 @@ import pkgutil
 import string
 #import f5_sphinx_theme
 import sphinx
-import sphinx_rtd_theme
+#import sphinx_rtd_theme
 
 # -*- coding: utf-8 -*-
 #
