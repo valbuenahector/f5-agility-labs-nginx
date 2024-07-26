@@ -1,395 +1,242 @@
+"""
+Shared Sphinx configuration using sphinx-multiproject.
+
+To build each project, the ``PROJECT`` environment variable is used.
+
+.. code:: console
+
+   $ make html  # build default project
+   $ PROJECT=dev make html  # build the dev project
+
+for more information read https://sphinx-multiproject.readthedocs.io/.
+"""
+
 import os
 import sys
-import time
-import re
-import pkgutil
-import string
-#import f5_sphinx_theme
-import sphinx
-#import sphinx_rtd_theme
 
-# -*- coding: utf-8 -*-
-#
-#
-# BEGIN CONFIG
-# ------------
-#
-# REQUIRED: Your class/lab name
-classname = "NGINX Modern Apps"
+from multiproject.utils import get_project
 
-# OPTIONAL: The URL to the GitHub Repository for this class
-github_repo = "https://github.com/f5devcentral/f5-agility-labs-nginx"
-
-#
-# END CONFIG
-# ----------
-
-sys.path.insert(0, os.path.abspath("."))
-
-year = time.strftime("%Y")
-eventname = "AppWorld %s Hands-on Lab Guide" % (year)
-
-rst_prolog = """
-.. |classname| replace:: %s
-.. |classbold| replace:: **%s**
-.. |classitalic| replace:: *%s*
-.. |ltm| replace:: Local Traffic Manager
-.. |adc| replace:: Application Delivery Controller
-.. |gtm| replace:: Global Traffic Manager
-.. |dns| replace:: DNS
-.. |asm| replace:: Application Security Manager
-.. |afm| replace:: Advanced Firewall Manager
-.. |apm| replace:: Access Policy Manager
-.. |pem| replace:: Policy Enforcement Manager
-.. |ipi| replace:: IP Intelligence
-.. |iwf| replace:: iWorkflow
-.. |biq| replace:: BIG-IQ
-.. |bip| replace:: BIG-IP
-.. |aiq| replace:: APP-IQ
-.. |ve|  replace:: Virtual Edition
-.. |icr| replace:: iControl REST API
-.. |ics| replace:: iControl SOAP API
-.. |f5|  replace:: F5 Networks
-.. |f5i| replace:: F5 Networks, Inc.
-.. |year| replace:: %s
-.. |github_repo| replace:: %s
-""" % (
-    classname,
-    classname,
-    classname,
-    year,
-    github_repo,
-)
-
-if "github_repo" in locals() and len(github_repo) > 0:
-    rst_prolog += """
-.. |repoinfo| replace:: The content contained here leverages a full DevOps CI/CD
-              pipeline and is sourced from the GitHub repository at %s.
-              Bugs and Requests for enhancements can be made by
-              opening an Issue within the repository.
-""" % (
-        github_repo
-    )
-else:
-    rst_prolog += ".. |repoinfo| replace:: \\n"
-
-# -- General configuration ------------------------------------------------
-
-# If your documentation needs a minimal Sphinx version, state it here.
-#
-# needs_sphinx = '1.0'
-
-# Add any Sphinx extension module names here, as strings. They can be
-# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
-# ones.
-
+sys.path.append(os.path.abspath("_ext"))
 extensions = [
-    "sphinx.ext.todo",
+    "hoverxref.extension",
+    "multiproject",
+    "myst_parser",
+    "notfound.extension",
+    "sphinx_copybutton",
+    "sphinx_design",
+    "sphinx_tabs.tabs",
+    "sphinx-prompt",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosectionlabel",
     "sphinx.ext.extlinks",
-    "sphinx.ext.graphviz",
-    "sphinx_copybutton"
-    # "sphinxcontrib.nwdiag",
-    # "sphinxcontrib.blockdiag",
-    # "sphinx.ext.autosectionlabel"
+    "sphinx.ext.intersphinx",
+    "sphinxcontrib.httpdomain",
+    "sphinxcontrib.video",
+    "sphinxemoji.sphinxemoji",
+    "sphinxext.opengraph",
 ]
 
-graphviz_output_format = "svg"
-graphviz_font = "DejaVu Sans:style=Book"
-graphviz_dot_args = [
-    "-Gfontname='%s'" % graphviz_font,
-    "-Nfontname='%s'" % graphviz_font,
-    "-Efontname='%s'" % graphviz_font,
+multiproject_projects = {
+    "user": {
+        "use_config_file": False,
+        "config": {
+            "project": "Read the Docs user documentation",
+            "html_title": "Read the Docs user documentation",
+        },
+    },
+    "dev": {
+        "use_config_file": False,
+        "config": {
+            "project": "Read the Docs developer documentation",
+            "html_title": "Read the Docs developer documentation",
+        },
+    },
+}
+
+docset = get_project(multiproject_projects)
+
+ogp_site_name = "Read the Docs Documentation"
+ogp_use_first_image = True  # https://github.com/readthedocs/blog/pull/118
+ogp_image = "https://docs.readthedocs.io/en/latest/_static/img/logo-opengraph.png"
+# Inspired by https://github.com/executablebooks/MyST-Parser/pull/404/
+ogp_custom_meta_tags = [
+    '<meta name="twitter:card" content="summary_large_image" />',
 ]
+ogp_enable_meta_description = True
+ogp_description_length = 300
 
-diag_fontpath = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
-diag_html_image_format = "SVG"
-diag_latex_image_format = "PNG"
-diag_antialias = False
-
-blockdiag_fontpath = nwdiag_fontpath = diag_fontpath
-blockdiag_html_image_format = nwdiag_html_image_format = diag_html_image_format
-blockdiag_latex_image_format = nwdiag_latex_image_format = diag_latex_image_format
-blockdiag_antialias = nwdiag_antialias = diag_antialias
-
-eggs_loader = pkgutil.find_loader("sphinxcontrib.spelling")
-found = eggs_loader is not None
-
-if found:
-    extensions += ["sphinxcontrib.spelling"]
-    spelling_lang = "en_US"
-    spelling_word_list_filename = "../wordlist"
-    spelling_show_suggestions = True
-    spelling_ignore_pypi_package_names = True
-    spelling_ignore_contributor_names = True
-    spelling_ignore_wiki_words = True
-    spelling_ignore_acronyms = True
-    spelling_ignore_python_builtins = True
-    spelling_ignore_importable_modules = True
-    spelling_filters = []
-
-# Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
 
-# The suffix(es) of source filenames.
-# You can specify multiple suffix as a list of string:
-#
-source_suffix = [".rst", ".md"]
+# This may be elevated as a general issue for documentation and behavioral
+# change to the Sphinx build:
+# This will ensure that we use the correctly set environment for canonical URLs
+# Old Read the Docs injections makes it point only to the default version,
+# for instance /en/stable/
+html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "/")
 
-source_parsers = {
-    ".md": "recommonmark.parser.CommonMarkParser",
-}
-
-# The master toctree document.
 master_doc = "index"
-
-# General information about the project.
-project = classname
-copyright = "2024, F5, Inc."
-author = "F5, Inc."
-
-# The version info for the project you're documenting, acts as replacement for
-# |version| and |release|, also used in various other places throughout the
-# built documents.
-#
-# The short X.Y version.
-version = ""
-# The full version, including alpha/beta/rc tags.
-release = "latest"
-
-# The language for content autogenerated by Sphinx. Refer to documentation
-# for a list of supported languages.
-#
-# This is also used if you do content translation via gettext catalogs.
-# Usually you set "language" from the command line for these cases.
-language = "en"
-
-# List of patterns, relative to source directory, that match files and
-# directories to ignore when looking for source files.
-# This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
-
-# The name of the Pygments (syntax highlighting) style to use.
-pygments_style = "sphinx"
-
-# If true, `todo` and `todoList` produce output, else they produce nothing.
-todo_emit_warnings = True
-todo_include_todos = True
-
-# -- Options for HTML output ----------------------------------------------
-
-# The theme to use for HTML and HTML Help pages.  See the documentation for
-# a list of builtin themes.
-
-html4_writer = True
-html_theme = "f5_sphinx_theme"
-html_theme_path = f5_sphinx_theme.get_html_theme_path()
-html_sidebars = {"**": ["searchbox.html", "localtoc.html", "globaltoc.html"]}
-html_theme_options = {
-    "site_name": "Community Training Classes & Labs",
-    "next_prev_link": True,
-    "version_selector": True,
-}
-html_context = {
-    "version_meta_path": "/training/community/template/versions.json",
-    "project_safe": re.sub("[^A-Za-z0-9]+", "", project),
-    "github_url": github_repo,
-}
-html_codeblock_linenos_style = "table"
-html_last_updated_fmt = "%Y-%m-%d %H:%M:%S"
-
-extlinks = {"issues": (("%s/issues/%%s" % github_repo), "issue ")}
-
-# Theme options are theme-specific and customize the look and feel of a theme
-# further.  For a list of options available for each theme, see the
-# documentation.
-#
-
-# Add any paths that contain custom themes here, relative to this directory.
-
-# The name for this set of Sphinx documents.
-# "<project> v<release> documentation" by default.
-#
-html_title = "{} {}".format(project, version)
-
-# A shorter title for the navigation bar.  Default is the same as html_title.
-#
-html_short_title = "Home"
-
-# The name of an image file (relative to this directory) to place at the top
-# of the sidebar.
-#
-html_logo = "_static/f5-logo-solid-rgb_small.png"
-
-# The name of an image file (relative to this directory) to use as a favicon of
-# the docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
-# pixels large.
-#
-# html_favicon = None
-
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ["_static"]
-
-# Add any extra paths that contain custom files (such as robots.txt or
-# .htaccess) here, relative to this directory. These files are copied
-# directly to the root of the documentation.
-#
-# html_extra_path = []
-
-# If not None, a 'Last updated on:' timestamp is inserted at every page
-# bottom, using the given strftime format.
-# The empty string is equivalent to '%b %d, %Y'.
-#
-# html_last_updated_fmt = None
-
-# If true, SmartyPants will be used to convert quotes and dashes to
-# typographically correct entities.
-#
-# html_use_smartypants = True
-
-# Custom sidebar templates, maps document names to template names.
-#
-html_sidebars = {"**": ["searchbox.html", "localtoc.html", "globaltoc.html"]}
-
-# Additional templates that should be rendered to pages, maps page names to
-# template names.
-#
-# html_additional_pages = {}
-
-# If false, no module index is generated.
-#
-html_domain_indices = True
-
-# If false, no index is generated.
-#
-html_use_index = True
-
-# If true, the index is split into individual pages for each letter.
-#
-# html_split_index = False
-
-# If true, links to the reST sources are added to the pages.
-#
-# html_show_sourcelink = True
-
-# If true, "Created using Sphinx" is shown in the HTML footer. The default is True.
-#
-html_show_sphinx = False
-
-# If true, "(C) Copyright ..." is shown in the HTML footer. Default is True.
-#
-html_show_copyright = True
-
-# If true, an OpenSearch description file will be output, and all pages will
-# contain a <link> tag referring to it.  The value of this option must be the
-# base URL from which the finished HTML is served.
-#
-# html_use_opensearch = ''
-
-# This is the file name suffix for HTML files (e.g. ".xhtml").
-# html_file_suffix = None
-
-# Language to be used for generating the HTML full-text search index.
-# Sphinx supports the following languages:
-#   'da', 'de', 'en', 'es', 'fi', 'fr', 'hu', 'it', 'ja'
-#   'nl', 'no', 'pt', 'ro', 'ru', 'sv', 'tr', 'zh'
-#
-# html_search_language = 'en'
-
-# A dictionary with options for the search language support, empty by default.
-# 'ja' uses this config value.
-# 'zh' user can custom change `jieba` dictionary path.
-#
-# html_search_options = {'type': 'default'}
-
-# The name of a javascript file (relative to the configuration directory) that
-# implements a search results scorer. If empty, the default will be used.
-#
-# html_search_scorer = 'scorer.js'
-
-# Output file base name for HTML help builder.
-# htmlhelp_basename = '<projectname>doc'
-
-# -- Options for HTMLHelp output ------------------------------------------
-
-cleanname = re.sub("\\W+", "", classname)
-
-# Output file base name for HTML help builder.
-htmlhelp_basename = cleanname + "doc"
-
-# -- Options for LaTeX output ---------------------------------------------
-
-front_cover_image = "front_cover"
-back_cover_image = "back_cover"
-
-front_cover_image_path = os.path.join("_static", front_cover_image + ".png")
-back_cover_image_path = os.path.join("_static", back_cover_image + ".png")
-
-latex_additional_files = [front_cover_image_path, back_cover_image_path]
-
-template = string.Template(open("preamble.tex").read())
-
-latex_contents = r"""
-\frontcoverpage
-\contentspage
-"""
-
-backcover_latex_contents = r"""
-\backcoverpage
-"""
-
-latex_elements = {
-    "papersize": "letterpaper",
-    "pointsize": "10pt",
-    "fncychap": r"\usepackage[Bjornstrup]{fncychap}",
-    "preamble": template.substitute(
-        eventname=eventname,
-        project=project,
-        author=author,
-        frontcoverimage=front_cover_image,
-        backcoverimage=back_cover_image,
+copyright = "Read the Docs, Inc & contributors"
+version = "11.2.1"
+release = version
+exclude_patterns = ["_build", "shared", "_includes"]
+default_role = "obj"
+intersphinx_cache_limit = 14  # cache for 2 weeks
+intersphinx_timeout = 3  # 3 seconds timeout
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/3.10/", None),
+    "django": (
+        "https://docs.djangoproject.com/en/stable/",
+        "https://docs.djangoproject.com/en/stable/_objects/",
     ),
-    "tableofcontents": latex_contents,
-    "printindex": backcover_latex_contents,
+    "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
+    "pip": ("https://pip.pypa.io/en/stable/", None),
+    "nbsphinx": ("https://nbsphinx.readthedocs.io/en/latest/", None),
+    "myst-nb": ("https://myst-nb.readthedocs.io/en/stable/", None),
+    "ipywidgets": ("https://ipywidgets.readthedocs.io/en/stable/", None),
+    "jupytext": ("https://jupytext.readthedocs.io/en/stable/", None),
+    "ipyleaflet": ("https://ipyleaflet.readthedocs.io/en/latest/", None),
+    "poliastro": ("https://docs.poliastro.space/en/stable/", None),
+    "myst-parser": ("https://myst-parser.readthedocs.io/en/stable/", None),
+    "writethedocs": ("https://www.writethedocs.org/", None),
+    "jupyterbook": ("https://jupyterbook.org/en/stable/", None),
+    "executablebook": ("https://executablebooks.org/en/latest/", None),
+    "rst-to-myst": ("https://rst-to-myst.readthedocs.io/en/stable/", None),
+    "rtd": ("https://docs.readthedocs.io/en/stable/", None),
+    "rtd-dev": ("https://dev.readthedocs.io/en/latest/", None),
+    "rtd-blog": ("https://blog.readthedocs.com/", None),
+    "jupyter": ("https://docs.jupyter.org/en/latest/", None),
 }
 
-# Grouping the document tree into LaTeX files. List of tuples
-# (source start file, target name, title,
-#  author, documentclass [howto, manual, or own class]).
+# Intersphinx: Do not try to resolve unresolved labels that aren't explicitly prefixed.
+# The default setting for intersphinx_disabled_reftypes can cause some pretty bad
+# breakage because we have rtd and rtd-dev stable versions in our mappings.
+# Hence, if we refactor labels, we won't see broken references, since the
+# currently active stable mapping keeps resolving.
+# Recommending doing this on all projects with Intersphinx.
+# https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html#confval-intersphinx_disabled_reftypes
+intersphinx_disabled_reftypes = ["*"]
+
+myst_enable_extensions = [
+    "deflist",
+]
+hoverxref_intersphinx = [
+    "sphinx",
+    "pip",
+    "nbsphinx",
+    "myst-nb",
+    "ipywidgets",
+    "jupytext",
+]
+htmlhelp_basename = "ReadTheDocsdoc"
 latex_documents = [
     (
-        master_doc,
-        "%s.tex" % cleanname,
-        "%s Documentation" % classname,
-        "F5, Inc.",
+        "index",
+        "ReadTheDocs.tex",
+        "Read the Docs Documentation",
+        "Eric Holscher, Charlie Leifer, Bobby Grace",
         "manual",
-        True,
     ),
 ]
-
-# -- Options for manual page output ---------------------------------------
-
-# One entry per manual page. List of tuples
-# (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, cleanname.lower(), "%s Documentation" % classname, [author], 1)
-]
-
-
-# -- Options for Texinfo output -------------------------------------------
-
-# Grouping the document tree into Texinfo files. List of tuples
-# (source start file, target name, title, author,
-#  dir menu entry, description, category)
-texinfo_documents = [
     (
-        master_doc,
-        classname,
-        "%s Documentation" % classname,
-        author,
-        classname,
-        classname,
-        "Training",
-    ),
+        "index",
+        "read-the-docs",
+        "Read the Docs Documentation",
+        ["Eric Holscher, Charlie Leifer, Bobby Grace"],
+        1,
+    )
 ]
+
+language = "en"
+
+locale_dirs = [
+    f"{docset}/locale/",
+]
+gettext_compact = False
+
+html_theme = "sphinx_rtd_theme"
+html_static_path = ["_static", f"{docset}/_static"]
+html_css_files = ["css/custom.css", "css/sphinx_prompt_css.css"]
+html_js_files = ["js/expand_tabs.js"]
+
+html_logo = "img/logo.svg"
+html_theme_options = {
+    "logo_only": True,
+    "display_version": False,
+}
+html_context = {
+    # Fix the "edit on" links.
+    # TODO: remove once we support different rtd config
+    # files per project.
+    "conf_py_path": f"/docs/{docset}/",
+    # Use to generate the Plausible "data-domain" attribute from the template
+    "plausible_domain": f"{os.environ.get('READTHEDOCS_PROJECT')}.readthedocs.io",
+}
+
+hoverxref_auto_ref = True
+hoverxref_domains = ["py"]
+hoverxref_roles = [
+    "option",
+    # Documentation pages
+    # Not supported yet: https://github.com/readthedocs/sphinx-hoverxref/issues/18
+    "doc",
+    # Glossary terms
+    "term",
+]
+hoverxref_role_types = {
+    "mod": "modal",  # for Python Sphinx Domain
+    "doc": "modal",  # for whole docs
+    "class": "tooltip",  # for Python Sphinx Domain
+    "ref": "tooltip",  # for hoverxref_auto_ref config
+    "confval": "tooltip",  # for custom object
+    "term": "tooltip",  # for glossaries
+}
+
+# See dev/style_guide.rst for documentation
+rst_epilog = """
+.. |org_brand| replace:: Read the Docs Community
+.. |com_brand| replace:: Read the Docs for Business
+.. |git_providers_and| replace:: GitHub, Bitbucket, and GitLab
+.. |git_providers_or| replace:: GitHub, Bitbucket, or GitLab
+"""
+
+# Activate autosectionlabel plugin
+autosectionlabel_prefix_document = True
+
+# sphinx-notfound-page
+# https://github.com/readthedocs/sphinx-notfound-page
+notfound_context = {
+    "title": "Page Not Found",
+    "body": """
+<h1>Page Not Found</h1>
+
+<p>Sorry, we couldn't find that page.</p>
+
+<p>Try using the search box or go to the homepage.</p>
+""",
+}
+linkcheck_retries = 2
+linkcheck_timeout = 1
+linkcheck_workers = 10
+linkcheck_ignore = [
+    r"http://127\.0\.0\.1",
+    r"http://localhost",
+    r"http://community\.dev\.readthedocs\.io",
+    r"https://yourproject\.readthedocs\.io",
+    r"https?://docs\.example\.com",
+    r"https://foo\.readthedocs\.io/projects",
+    r"https://github\.com.+?#L\d+",
+    r"https://github\.com/readthedocs/readthedocs\.org/issues",
+    r"https://github\.com/readthedocs/readthedocs\.org/pull",
+    r"https://docs\.readthedocs\.io/\?rtd_search",
+    r"https://readthedocs\.org/search",
+    # This page is under login
+    r"https://readthedocs\.org/accounts/gold",
+]
+
+extlinks = {
+    "rtd-issue": ("https://github.com/readthedocs/readthedocs.org/issues/%s", "#%s"),
+}
+
+# Disable epub mimetype warnings
+suppress_warnings = ["epub.unknown_project_files"]
