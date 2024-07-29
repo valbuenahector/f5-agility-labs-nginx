@@ -38,7 +38,7 @@ You should see a Welcome to NGINX Management Suite home screen, select Instance 
 
 .. image:: ./UDF-welcome.png
 
-.. image:: ./UI-select-scan.png
+.. image:: ./nim-scan.png
 
 Step 2: Change scan options
 ---------------------------
