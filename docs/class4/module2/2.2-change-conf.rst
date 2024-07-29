@@ -104,7 +104,7 @@ Step 3: Publish the new website
 
 Now switch tabs to the ``Sample Web Page`` and refresh the page.
 
-.. image:: ./UDF-nginx5-welcome.png
+.. image:: ./nginx-page.png
 
 It should not have changed because we did not publish the change yet.
 This is because we just stored the change in the database and didn't push 
