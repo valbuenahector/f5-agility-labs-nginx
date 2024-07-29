@@ -24,9 +24,9 @@ the ``ACCESS`` dropdown and open the ``SAMPLE WEB PAGE`` selection.
 
 .. image:: ./UDF-nginx5-sample.png
 
-A default web page that says ``Welcome to CentOS`` should appear.
+A default web page that says ``Welcome to nginx!`` should appear.
 
-.. image:: ./UDF-nginx5-welcome.png
+.. image:: ./nginx-page.png
 
 Leave this webpage open in a tab and navigate back to the UDF environment.
 
