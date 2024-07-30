@@ -1,5 +1,5 @@
 NGINX App Protect DoS
-=====================
+-----------
 
 The remainder of this lab will familiarize you with Denial of Service attacks and help you protect HTTP and gRPC services against them using NGINX App Protect Denial of Service.
 
@@ -14,7 +14,7 @@ You will accomplish the following as part of this lab:
 #. Monitor live activity with the built-in NGINX App Protect DoS Dashboard
 
 Topology
-========
+-----------
 
 The remainder of this lab will use VMs in your existing deployment that we have not interacted with so far. They are:
 
@@ -33,7 +33,7 @@ Monitoring
     - ELK -- containerized ELK stack pre-configured to monitor NGINX App Protect DoS instances -- 10.1.1.20
 
 Attack Scripts
-==============
+-----------
 All attack scripts are located in ``/scripts`` folder on the "Attack Traffic Generator" VM.
 
 HTTP/1 Flood Attack -- ``/scripts/http1flood.sh``
