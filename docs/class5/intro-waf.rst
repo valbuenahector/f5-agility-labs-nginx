@@ -161,14 +161,15 @@ Lab Inventory
 Accessing the Lab
 -----------------
 
-In this lab, you will need access all resources by connecting to a Linux jump host (Called **Jump Server**) running XRDP. However, some environments will restrict XRDP access (Port 389). To overcome this restriction we have added another VM called **Alt-RemoteDesktopAccess**. This VM is running Apache Guacamole, which enables us to access **Jump Server** VM running XRDP using HTTPS 
+In this lab, you will need access all resources by connecting to a Linux jump host (Called **Jump Server**) running XRDP. However, some environments will restrict XRDP access (Port 389). To overcome this restriction we have added another VM called **Alt-RemoteDesktopAccess**. This VM is running Apache Guacamole, which enables us to access **Jump Server** VM running XRDP using HTTPS. 
 
 
-On the Alt-RemoteDesktopAccess VM tile, click **ACCESS** and then click **GUACAMOLE** 
+On the Alt-RemoteDesktopAccess VM tile, click **ACCESS** and then click **GUACAMOLE**. 
+
 .. image:: images/altrdp.png
 
 
-On the **GUACAMOLE** login prompt use the following credentials
+On the **GUACAMOLE** login prompt use the following credentials.
 
 Username: user
 Password: user
