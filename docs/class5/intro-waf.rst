@@ -172,7 +172,7 @@ On the **GUACAMOLE** login prompt use the following credentials
 
 Username: user
 Password: user
-ß
+
 .. image:: images/guacamole.png
 
 
