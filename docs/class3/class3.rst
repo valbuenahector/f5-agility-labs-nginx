@@ -7,20 +7,13 @@ This class will introduce the student to customizing NGINX using NGINX JavaScrip
 
 In each lab we will configure an NGINX server to either provide content itself or act as a reverse proxy that retrieves content from other servers.
 
-We will use Docker to deploy each lab environment locally on the student's machine where all servers will run in a single Docker container.  While Docker containers are ideal for running NGINX, the same concepts apply when running NGINX in a VM or on a bare metal server.
+This lab uses Docker containers to run everything in a single NGINX VM. While Docker containers are ideal for running NGINX, the same concepts apply when running NGINX in a VM or on a bare metal server.
 
-**Lab Requirements**
+**Verify the NGINX VM is Ready**
 
-While a lab system is provided for you in UDF, we encourage you to run the labs locally on your own system if you can.  To do that, you'll need to have two applications installed:
+Click on ACCESS and then WEB SHELL. Then run the follwing commnands.
 
-- Docker Desktop for Windows or MacOS ( https://www.docker.com/products/docker-desktop)
-- A git client ( https://git-scm.com/downloads )
-
-If you already have access to a Linux system with Docker and git, you're all set.
-
-**Verify your System is Ready**
-
-First make sure you have git and Docker available.  Open up a terminal on your system (or Windows Command Prompt) and try the following commands:
+  .. image:: images/access.png
 
 *(Note: The command is highlighted. The output is not.)*
 
