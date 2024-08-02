@@ -3,10 +3,10 @@ NGINX AppWorld Labs - Index
 
 Welcome to the |classbold| labs 
 
+|repoinfo|
+
 DAY 1
 ------
-
-|repoinfo|
 
 .. toctree::
    :maxdepth: 2
@@ -19,8 +19,6 @@ DAY 1
 
 DAY 2
 ------
-
-|repoinfo|
 
 .. toctree::
    :maxdepth: 2
