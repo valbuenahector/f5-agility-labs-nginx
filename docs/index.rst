@@ -15,7 +15,15 @@ DAY 1
 
    class1/class*
    class2/class*
-   class3/class* - OPTIONAL
+
+OPTIONAL LAB
+------
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+   :glob:
+
+   class3/class*
 
 DAY 2
 ------
@@ -25,7 +33,14 @@ DAY 2
    :caption: Contents:
    :glob:
 
-
    class4/class*
    class5/class*
-   class8/class* - OPTIONAL
+   
+OPTIONAL LAB
+------
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+   :glob:
+
+   class8/class*
