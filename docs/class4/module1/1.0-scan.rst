@@ -67,7 +67,7 @@ some information on the screen as the scan runs.
 .. image:: ./UI-scan-complete.png
 
 
-Once it is complete, you should see a list of instances underneath the two panels.
+Once it is complete, you should see a list of instances underneath the two panels (number of instances might be different than screnshot).
 
 .. image:: ./UI-scan-results.png
 

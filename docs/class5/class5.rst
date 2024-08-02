@@ -18,7 +18,7 @@ NGINX App Protect Web Application Firewall
    module4/module4
    module5/module5
 
-NGINX App Protect Denial-of-Service prevention
+OPTIONAL - ßNGINX App Protect Denial-of-Service prevention
 -----------
 
 .. toctree::

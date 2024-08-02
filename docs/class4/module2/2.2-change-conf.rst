@@ -145,7 +145,7 @@ In the editor click the icon ``Add File``.
 
 .. image:: ./UI-nginx5-add.png
 
-Add a new file called ``test.conf`` in the window and click ``Create``.
+Add a new file called (path included) ``/etc/nginx/test.conf`` in the window and click ``Create``.
 
 .. image:: ./UI-nginx5-add-test.png
 
@@ -305,7 +305,7 @@ Let's use a simple example and focus on the ``nginx.conf`` file and ``NGINX Plus
 
 We can simply change the error.log name by inserting a value.
 
-Click the ``Revert`` button in the editor.
+Click the ``Revert`` button in the editor (If the button is grayed out then there are not change to revert back).
 
 .. image:: ./UI-nginx5-reset-current.png
 

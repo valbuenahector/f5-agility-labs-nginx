@@ -39,7 +39,7 @@ Step 2: Enable and start the service
 
 Run the following command ``sudo systemctl start nginx-agent``
 Once that is executed confirm the service is running by executing the following command :
-``sudo systemctl status nginx-agent``. 
+ß`. 
 
 .. image:: ../module2/enable_agent.png
 
@@ -58,7 +58,7 @@ Navigate to the Instances page and look for the instance we added.
 Notice how we have columns that show Hostname and Type. 
 Our instances are named according to the Operating System and NGINX type they run.
 
-Let's focus on the instance ``ubuntu`` which is running NGINX 1.21.3. Click the Hostname and more information on the instance will appear, scroll down to Network Interface and notice this is our 10.1.1.9 instance.
+Let's focus on the instance ``ubuntu`` which is running NGINX 1.21.5. Click the Hostname and more information on the instance will appear, scroll down to Network Interface and notice this is our 10.1.1.9 instance.
 
 .. image:: ./UI-details.png
 

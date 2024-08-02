@@ -32,16 +32,10 @@ Step 1
 
 Navigate to the ``nginx-manager`` instance as ``ubuntu`` and use the home directory.
 
-Use the SSH menu option to beceome the ubuntu user.  If you use the web-shell it 
+Use the WEB SHELL menu option. it 
 defaults to the root user.  To follow best practice, please use the ubuntu user.
 
-.. image:: ./Access-SSH.jpg
-
-If prompted, select yes for trusting the ssh connection in your terminal.
-
-.. image:: ./Add-SSH.png
-
-``NOTE: If you haven't added SSH keys to UDF - Use the WebShell``
+``su ubuntuß``
 
 .. image:: ./Access-SSH-2.jpg
 

@@ -161,11 +161,20 @@ Lab Inventory
 Accessing the Lab
 -----------------
 
-In this lab, you will access all resources by connecting to a Linux jump host running XRDP. XRDP is an open-source version of the popular Remote Desktop Protocol and is compatible with all popular RDP clients.
+In this lab, you will need access all resources by connecting to a Linux jump host (Called **Jump Server**) running XRDP. However, some environments will restrict XRDP access (Port 389). To overcome this restriction we have added another VM called **Alt-RemoteDesktopAccess**. This VM is running Apache Guacamole, which enables us to access **Jump Server** VM running XRDP using HTTPS 
 
-When you first connect to the Jump Host via RDP, you will be prompted to click **OK** to connect to the remote session.
 
-.. image:: images/xrdp_login_prompt.png
+On the Alt-RemoteDesktopAccess VM tile, click **ACCESS** and then click **GUACAMOLE** 
+.. image:: images/altrdp.png
+
+
+On the **GUACAMOLE** login prompt use the following credentials
+
+Username: user
+Password: user
+ß
+.. image:: images/guacamole.png
+
 
 Once connected, you will see the desktop as shown below.
 
