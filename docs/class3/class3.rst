@@ -13,7 +13,7 @@ This lab uses Docker containers to run everything in a single NGINX VM. While Do
 
 Click on ACCESS and then WEB SHELL. Then run the follwing commnands.
 
-  .. image:: images/access.png
+  .. image:: module1/images/access.png
 
 *(Note: The command is highlighted. The output is not.)*
 
