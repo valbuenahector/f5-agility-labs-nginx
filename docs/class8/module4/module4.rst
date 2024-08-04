@@ -95,7 +95,7 @@ Host: http://10.1.1.9/
 
 Advanced Options, Run time: 30s
 
-.. image:: /class8/images/locus-500-50-30.png  
+.. image:: /class8/images/locus-100-10-30.png  
    :width: 200 px
 
 .. note::  Where you do see the performance improvement in the Locust chart?
@@ -151,7 +151,7 @@ Publish the changes and re-run the test.
 
 In NIM, edit nginx.conf and publish
 
-Uncomment open_file_cache, line 36
+Uncomment open_file_cache, line 38
 
    `open_file_cache max=4096`
 
