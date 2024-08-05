@@ -21,7 +21,7 @@ DAY 1
    :caption: Optional Contents:
    :glob:
 
-   class3/class*
+   class8/class*
 
 DAY 2
 ------
@@ -40,4 +40,4 @@ DAY 2
    :caption: Optional Contents:
    :glob:
 
-   class8/class*
+   class3/class*
