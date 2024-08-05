@@ -21,10 +21,10 @@ Click on ACCESS and then WEB SHELL. Then run the follwing commnands.
   :emphasize-lines: 1,4
 
   git --version
-  git version 2.25.0
+  git version 2.17.1
   
   docker --version
-  Docker version 19.03.8, build afacb8b
+  Docker version 20.10.6, build 370c289
 
 If both the git and docker commands work, you are ready to continue by clicking the next button below.
 

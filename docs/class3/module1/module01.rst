@@ -13,16 +13,28 @@ As is customary for any programming class, our first lab outputs "Hello World!" 
 
 **Step 2:** Now let's use curl to test our NGINX server:
 
+Command
 .. code-block:: none
-  :emphasize-lines: 1,4,7
 
   curl http://localhost/
+
+Result
+.. code-block:: none
   Hello world!
 
+Command
+.. code-block:: none
+
   curl http://localhost/version
+
+Result  
+.. code-block:: none
   0.5.3
 
+Command
+.. code-block:: none
   docker stop njs_example
+
 
 Code Snippets
 ~~~~~~~~~~~~~

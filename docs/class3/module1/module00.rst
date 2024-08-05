@@ -15,9 +15,11 @@ This command first downloads the nginx image (if we don't already have it) boots
 Now let's test our new NGINX container:
 
 .. code-block:: shell
-  :emphasize-lines: 1
-
   curl localhost
+
+Result
+.. code-block:: shell
+
 
   <!DOCTYPE html>
   <html>
