@@ -15,11 +15,9 @@ This command first downloads the nginx image (if we don't already have it) boots
 Now let's test our new NGINX container:
 
 .. code-block:: shell
+  :emphasize-lines: 1
+
   curl localhost
-
-Result
-.. code-block:: shell
-
 
   <!DOCTYPE html>
   <html>
@@ -90,7 +88,7 @@ Lab Guidance
 
 Make sure you stay in the njs-examples directory (as shown above) for all of your labs while running Docker commands.
 
-Using Docker to start each lab requires many command line options.  We will make things easier by using an environment variable to select the lab we will work on so we only have to type the docker command in once and then reuse it from command line history. For example, to start the lab named hello:
+Using Docker to start each lab requires many command line options.  We will make things easier y using an environment variable to select the lab we will work on so we only have to type the docker command in once and then reuse it from command line history. For example, to start the lab named hello:
 
 .. code-block:: shell
 
