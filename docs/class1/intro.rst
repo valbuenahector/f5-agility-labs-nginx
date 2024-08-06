@@ -52,14 +52,13 @@ In this lab, you will need access all resources by connecting to a Linux jump ho
 
 On the Alt-RemoteDesktopAccess VM tile, click **ACCESS** and then click **GUACAMOLE**. 
 
-.. image:: images/altrdp.png
-
+.. image:: images/guacamole2.png
 
 
 
 On the **GUACAMOLE** login prompt use the following credentials Username: user Password: user.
 
-.. image:: images/guacamole2.png
+.. image:: images/guacamole.png
 
 
 
