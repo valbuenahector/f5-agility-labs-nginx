@@ -41,28 +41,27 @@ the lab. **Run all lab activities from the JumpHost**. When using the web Browse
 on the JumpHost be sure to use Chrome. In the interest of time, the NGINX Plus
 image creation and deployment process has already been completed for you.
 
-Lab Topology and Credentials
------------------------------
 
-You will be required to access the JumpHost during this lab:
 
-+---------------------------------+-------------------+----------------+
-| **Component**                   | **Access**        | **Credentials**|
-|                                 |                   |                |
-+=================================+===================+================+
-| **JumpHost Windows Server 2019  | RDP Access        | ``user`` /     |
-| R2**                            |                   | ``user``       |
-+---------------------------------+-------------------+----------------+
 
-To get started with the lab exervises, open an RDP session to the ``Windows
-server 2019 JumpHost > Access > RDP``
+Accessing the Lab
+-----------------
 
-.. image:: images/rdp_jumphost.png
+In this lab, you will need access all resources by connecting to a Linux jump host (Called **JumpHost**) running RDP. However, some environments will restrict RDP access (Port 389). To overcome this restriction we have added another VM called **Alt-RemoteDesktopAccess**. This VM is running Apache Guacamole, which enables us to access **Jumphost** VM running RDP using HTTPS. 
 
-The RDP file should be downloaded to your local mahcine. Launch the RDP file and
-once you are prompted for credential, enter the credentials from above.
 
-.. image:: images/rdp_credentials_jumphost.png
+On the Alt-RemoteDesktopAccess VM tile, click **ACCESS** and then click **GUACAMOLE**. 
+
+.. image:: images/altrdp.png
+
+
+
+
+On the **GUACAMOLE** login prompt use the following credentials Username: user Password: user.
+
+.. image:: images/guacamole.png
+
+
 
 The Windows JumpHost is now ready for the lab
 
