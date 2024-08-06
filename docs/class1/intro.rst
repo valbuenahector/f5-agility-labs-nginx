@@ -59,7 +59,7 @@ On the Alt-RemoteDesktopAccess VM tile, click **ACCESS** and then click **GUACAM
 
 On the **GUACAMOLE** login prompt use the following credentials Username: user Password: user.
 
-.. image:: images/guacamole.png
+.. image:: images/guacamole2.png
 
 
 
