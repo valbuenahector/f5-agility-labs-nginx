@@ -70,15 +70,14 @@ Which should produce the following output:
       registry.gitlab.f5.local/f5-demo-lab/nginx-plus-dockerfiles:alpine3.10
       registry.gitlab.f5.local/f5-demo-lab/nginx-plus-dockerfiles:alpine3.10
 
-4. Run a container using the downloaded docker image from the previous
+4. Run a container using the downloaded docker image from the previoußs
    step. We will also map ports ``9000`` and ``9080`` on the docker host
    to ports ``80`` and ``8080`` on the container, and also mount the
    local nginx configurations to the container
 
    .. code:: bash
 
-      docker run --name test -d -p 9000:80 -p 9080:8080 -v $PWD/etc/nginx:/etc/nginx 
-      registry.gitlab.f5demolab.com/f5-demo-lab/nginx-plus-dockerfiles:alpine3.10
+      docker run --name test -d -p 9000:80 -p 9080:8080 -v $PWD/etc/nginx:/etc/nginx ßregistry.gitlab.f5demolab.com/f5-demo-lab/nginx-plus-dockerfiles:alpine3.10
 
 
 5. You can see the container is running on the mapped ports. When
