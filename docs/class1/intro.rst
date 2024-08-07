@@ -36,7 +36,7 @@ components:
     - NGINX Open Source Instances
     - Windows JumpHost
 
-The Jumphost (Windows) is already setup with all the tools required to complete
+The Jumphost is already setup with all the tools required to complete
 the lab. **Run all lab activities from the JumpHost**. When using the web Browser
 on the JumpHost be sure to use Chrome. In the interest of time, the NGINX Plus
 image creation and deployment process has already been completed for you.

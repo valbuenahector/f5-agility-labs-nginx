@@ -87,28 +87,14 @@ this lab:
 |                                 | SSH access        |                |
 +---------------------------------+-------------------+----------------+
 
-To get started with the lab exercises, open an RDP session to the
-``Windows server 2019 JumpHost > Access > RDP``
+To get started with the lab exercises, open a Guacanmole session form the Super Jump Host
 
-.. image:: ./images/image3.png
+In this lab, you will need access all resources by connecting to a Linux jump host (Called **Windows Jumphost**) running RDP. However, some environments will restrict XRDP access (Port 389). To overcome this restriction we have added another VM called **Super Jump Host**. This VM is running Apache Guacamole, which enables us to access **Windows Jumphost** VM running RDP using HTTPS. 
 
-To get an open a preset screen resolution RDP session click on
-``Details > RDP > [Select an RDP screen resolution]``
 
-.. image:: ./images/image4a.png
+On the Super Jump Host VM tile, click **ACCESS** and then click **GUACAMOLE**. 
 
-.. image:: ./images/image4b.png
 
-.. Note:: When prompted for your User Account details, enter: ``user``/``user``
-
-.. image:: ./images/image5.png
-
-The Windows JumpHost is now ready for the lab
-
-.. image:: ./images/image6.png
-
-.. ATTENTION::
-    ``Guacamole Super Jump Host`` - details for using a browser based RDP session.
 
 ``Super Jump Host > Access > Guacamole``.  Login with user/user.
 
