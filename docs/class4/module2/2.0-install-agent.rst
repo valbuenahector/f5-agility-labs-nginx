@@ -39,7 +39,7 @@ Step 2: Enable and start the service
 
 Run the following command ``sudo systemctl start nginx-agent``
 Once that is executed confirm the service is running by executing the following command :
-ß`. 
+``sudo systemctl status nginx-agent``. 
 
 .. image:: ../module2/enable_agent.png
 
