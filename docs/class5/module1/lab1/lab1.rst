@@ -35,7 +35,7 @@ View the NGINX Plus Instance in NIM
 
 9. Each instance of this lab runs in a virtual environment. Since new VMs are deployed for each instance, the operating system identifiers change, so each NGINX Plus instance is treated as a new instance. Thus, you may see previous instances listed. **Delete only the Offline instances by clicking the three dot icon under the Actions column and selecting Delete**, as shown in the image below.
 
-.. warning:: Do not delete the active instance at the top of the list!
+.. warning:: Do not delete the active instance at the top of the list! If the OFFLINE instance is not in teh list, then skip this step and go to step 10. 
 
 .. image:: images/nim_instances_delete_offline.png
 
