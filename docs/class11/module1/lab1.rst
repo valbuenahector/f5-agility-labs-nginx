@@ -1,11 +1,24 @@
 Task 00: Kubernetes Lab Environment
 ===================================
 
-Connect to the lab environment via RDP. Linux Jump Host => Access => XRDP
+Connect to the lab environment via RDP. Linux Jump Host => Access => Guacamole.
 
-.. image:: images/01_udf_xrdp.jpg
+Whem pompted by the Guacamole login page use the following credentials.
+
+username: ``user``
+password: ``user``
+
+.. image:: images/guacamole3.png
   :scale: 50%
-  
+
+
+
+Click OK on the Connection Log Window.
+
+.. image:: images/conneciton.png
+
+Then when pompted ot login into the host use the below credentials.
+
 username: ``ubuntu``
 password: ``ubuntu``
 
