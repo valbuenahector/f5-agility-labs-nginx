@@ -24,6 +24,10 @@ password: ``ubuntu``
 
 If you're prompted for a password a second time: ``ubuntu``
 
+If you are prompted for a color managed device, you can close it and ignore.
+
+.. image:: images/authe.png
+
 Open a terminal. Position and resize the terminal to the left side of the screen. ssh to microk8s1.
 
 .. code-block:: bash
